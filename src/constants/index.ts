@@ -14,6 +14,7 @@ export const frameworkOptions = [
   },
   {
     text: "Vuejs",
+    id: "vuejs",
     icon: vueLogo,
   },
 ];

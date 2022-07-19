@@ -19,12 +19,11 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   const [favs, setFavs] = useState<Hit[]>(NewsService.favs);
 
   const handleOnOptionClick = useCallback((option: any) => {
-    setSelectedFramework(option.name);
+    setSelectedFramework(option);
     setFilters({
       page: 0,
       query: option.id,
     });
-    fetchNews();
   }, []);
 
   const onRenderOption = (option: any) => {
@@ -62,7 +61,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 
   useEffect(() => {
     fetchNews();
-  }, []);
+  }, [filters]);
 
   return (
     <div>
