@@ -1,13 +1,22 @@
 .tabs{
+  display: flex;
+  margin: 0px auto ;
   .tab{
-    border-radius: 2px;
     border: $tabs-border;
     color: $tabs-color;
-    padding: 2rem 0.5rem;
-    font-size: bold;
+    padding:  0.5rem 2rem;
+    font-weight: bold;
     &.active{
       color: $tabs-active-color;
       border: $tabs-border-active;
+    }
+    &:first-child{
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+    &:last-child{
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
     }
   }
 }

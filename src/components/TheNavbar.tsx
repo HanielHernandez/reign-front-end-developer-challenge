@@ -1,12 +1,11 @@
-import { FC } from "react"
-
-const TheNavbar: FC = ()=>{
-
+import { FC } from "react";
+import logo from "../assets/logo.png";
+const TheNavbar: FC = () => {
   return (
     <nav>
-      <h3>Hacker News</h3>
+      <img src={logo} alt="logo" />
     </nav>
   );
-}
+};
 
-export default TheNavbar
+export default TheNavbar;
