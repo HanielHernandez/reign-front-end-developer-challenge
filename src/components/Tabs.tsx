@@ -10,7 +10,7 @@ const Tabs: FunctionComponent<Props> = ({ tabs, defaultActiveTab }) => {
   const [activeTab, setActiveTab] = useState<string>(defaultActiveTab);
   const currentTab = useMemo(
     () => tabs.find((tab) => tab.name == activeTab),
-    []
+    [activeTab]
   );
   return (
     <div className="tabs-container">
@@ -18,6 +18,7 @@ const Tabs: FunctionComponent<Props> = ({ tabs, defaultActiveTab }) => {
         {tabs.map((tab) => {
           return (
             <div
+              key={tab.name}
               className={`tab ${activeTab == tab.name ? "active" : ""}`}
               onClick={() => setActiveTab(tab.name)}
             >

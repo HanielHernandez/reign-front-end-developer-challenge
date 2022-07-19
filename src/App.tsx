@@ -10,11 +10,11 @@ function App() {
   const tabs: Tab[] = [
     {
       name: "All",
-      component: <NewList/>,
+      component: <NewList mode="all"/>,
     },
     {
       name: "My Faves",
-      component:<NewList/>,
+      component: <NewList mode="favs"/>,
     },
   ];
   return (
