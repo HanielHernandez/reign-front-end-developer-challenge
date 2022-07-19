@@ -27,7 +27,11 @@ const Tabs: FunctionComponent<Props> = ({ tabs, defaultActiveTab }) => {
           );
         })}
       </div>
-      {currentTab && currentTab.component}
+      {currentTab && (
+        <currentTab.component
+          mode={currentTab.name == "All" ? "all" : "favs"}
+        />
+      )}
     </div>
   );
 };

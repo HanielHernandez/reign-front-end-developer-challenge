@@ -8,7 +8,39 @@
     &.hidden {
       visibility: hidden
     }
+
+    .arrow {
+      width: .875rem;
+      height: .8575rem;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0.75rem;
+      display: block;
+      z-index: 97;
+
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        height: 2px;
+        background-color: #2e2e2e;
+        width: 50%;
+        position: absolute;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        top: 50%;
+        transform: rotate(-45deg) translate(-50%, -50%);
+      }
+    }
   }
+
+
 
   &-input {
     width: 100%;

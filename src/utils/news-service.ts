@@ -1,6 +1,7 @@
 import axios from "axios";
 import { API_URL, DEFAUL_PARAMS, SEARCH_BY_DATE_URL } from "../constants";
 import { APIParams } from "../models/api-params";
+import { Framework } from "../models/framework";
 import { Hit } from "../models/hit";
 import { NewsResponse } from "../models/news-response";
 
@@ -32,10 +33,12 @@ export class NewsService {
     const existingFav = this.getFav(hit);
     console.log(this.favs);
     if (existingFav) {
-      const newFavs = [
-        ...this.favs.filter((x) => x.objectID != existingFav.objectID),
-      ];
-      localStorage.setItem("saved_favs", JSON.stringify(newFavs));
+      localStorage.setItem(
+        "saved_favs",
+        JSON.stringify(
+          this.favs.filter((x) => x.objectID != existingFav.objectID)
+        )
+      );
     } else {
       localStorage.setItem("saved_favs", JSON.stringify([...this.favs, hit]));
     }
@@ -43,6 +46,14 @@ export class NewsService {
 
   getFav(hit: Hit): Hit | undefined {
     return this.favs.find((x) => x.objectID == hit.objectID);
+  }
+
+  setQueryFilter(filter: Framework): void {
+    localStorage.setItem("query_filter", JSON.stringify(filter));
+  }
+  get queryFilter(): Framework | undefined {
+    const filter = localStorage.getItem("query_filter");
+    return filter ? JSON.parse(filter) : undefined;
   }
 }
 

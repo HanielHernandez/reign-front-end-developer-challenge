@@ -10,18 +10,18 @@ function App() {
   const tabs: Tab[] = [
     {
       name: "All",
-      component: <NewList mode="all"/>,
+      component: NewList,
     },
     {
       name: "My Faves",
-      component: <NewList mode="favs"/>,
+      component: NewList,
     },
   ];
   return (
     <div className="App">
-      <TheNavbar/>
+      <TheNavbar />
       <div className="container">
-        <Tabs defaultActiveTab="All" tabs={tabs}/>
+        <Tabs defaultActiveTab="All" tabs={tabs} />
       </div>
     </div>
   );

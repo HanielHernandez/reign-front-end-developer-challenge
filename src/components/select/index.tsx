@@ -1,6 +1,6 @@
 import { FC, ReactNode, useMemo, useState } from "react";
 import { SelectOption } from "../../models/select-option";
-import SelectItem from "./SelectItem";
+import SelectItem from "./select-item";
 
 interface SelectProps {
   placeholder: string;
@@ -24,7 +24,7 @@ export const Select: FC<SelectProps> = ({
   };
 
   return (
-    <div className={`select-container ${hide ? "hidden" : false}`}>
+    <div className={`select-container ${hide ? "hidden" : ""}`}>
       <input
         type="text"
         value={value}
