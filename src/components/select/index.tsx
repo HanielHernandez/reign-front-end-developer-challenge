@@ -33,6 +33,7 @@ export const Select: FC<SelectProps> = ({
         onFocus={() => setIsMenuOpen(true)}
         placeholder={placeholder}
       />
+      <div className="arrow"></div>
 
       {isMenuOpen && (
         <>

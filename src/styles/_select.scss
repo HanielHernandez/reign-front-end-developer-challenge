@@ -4,9 +4,15 @@
     max-width: 100%;
     width: 100%;
 
-
     &.hidden {
       visibility: hidden
+    }
+
+    .arrow {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.75rem;
+      z-index: 97;
     }
 
 
@@ -64,6 +70,7 @@
     height: 100vh;
     z-index: 98;
   }
+
 }
 
 .arrow {
@@ -102,5 +109,6 @@
   &.left {
     transform: rotate(270deg);
   }
+
 
 }
