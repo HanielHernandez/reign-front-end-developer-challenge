@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 const TheNavbar: FC = () => {
   return (
     <nav>
-      <img src={logo} alt="logo" />
+      <img className="logo" src={logo} alt="logo" />
     </nav>
   );
 };

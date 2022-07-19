@@ -12,7 +12,7 @@ function App() {
       component: () => <></>,
     },
     {
-      name: "My Faves",
+      name: "My faves",
       component: () => <></>,
     },
   ];
