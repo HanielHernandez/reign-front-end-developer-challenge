@@ -1,5 +1,50 @@
 .select{
   &-container{
     position: relative;
+    max-width: 240px;
+    width: 100%;
+  }
+  &-input{
+    width: 100%;
+    padding: 5px 12px ;
+    height: 32px;
+    border-radius: 4px;
+    border:$select-input-border;
+    font-size: 14px;
+    outline: none;
+    z-index: 99;
+    &::placeholder{
+      color: $select-input-placeholder-color;
+    }
+  }
+  &-menu{
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 #dad8d8;
+    z-index: 99;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    &-item{
+      display: flex;
+      padding: 0.75rem ;
+      font-size: 0.875rem;
+      justify-content: start;
+      align-items: center;
+      &:hover{
+        background-color: #eaeaea;
+      }
+      &-icon {
+        margin-right: 0.75rem;
+      }
+    }
+  }
+  &-cover{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 98;
   }
 }

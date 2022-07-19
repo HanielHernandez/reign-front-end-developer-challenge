@@ -4,6 +4,7 @@ $gray1: #979797;
 $gray2: #606060;
 $gray3: #2e2e2e;
 $gray-4: #3b3b3b;
+$gray-5: #343434;
 
 $button-border-color: rgba(0, 0, 0, 0.15);
 $button-color: rgba(0, 0, 0, 0.65);
@@ -15,4 +16,8 @@ $tabs-border:  solid 1px #d6d6d6;
 $tabs-border-active:  solid 1px $blue1;
 $tabs-color: $gray2;
 $tabs-active-color: $blue1;
+
+$select-input-border:   solid 1px $gray3;
+$select-input-placeholder-color: $gray-5;
+
 

@@ -1,18 +1,40 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode, useMemo, useState } from "react";
 
 interface SelectProps {
-  placeholder: "",
-  options: any[],
-  onRenderOptions: (item:any)=>ReactNode
+  placeholder: string;
+  options: any[];
+  value:string
+  onRenderOptions: ( item: any) => ReactNode;
 }
 
-export const Select: FC = ()=>{
-  return <div className="select-container">
-    <input type="text" className="select-input" />
-    <div className="select-menu">
+export const Select: FC<SelectProps> = ({
+  options,
+  placeholder,
+  value,
+  onRenderOptions,
+}) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+ 
+  return (
+    <div className="select-container">
+      <input
+        type="text"
+        value={value}
+        className="select-input"
+        onFocus={() => setIsMenuOpen(true)}
+        placeholder={placeholder}
+      />
 
+      {isMenuOpen && (
+        <>
+
+          <div className="select-menu">
+            {options.map((option) => onRenderOptions(option,))}
+          </div>
+          <div className="select-cover" onClick={()=>setIsMenuOpen(false)}></div>
+        </>
+      )}
     </div>
-
-  </div>
-}
+  );
+};
 export default Select;
