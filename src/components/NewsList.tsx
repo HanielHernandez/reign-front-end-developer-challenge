@@ -1,5 +1,7 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { frameworkOptions } from "../constants";
+import { APIParams } from "../models/api-params";
+import { NewsResponse } from "../models/news-response";
 import NewsService from "../utils/news-service";
 import Select from "./select";
 
@@ -9,13 +11,21 @@ interface NewListProps {
 const NewsList: FC<NewListProps> = ({ mode }) => {
 
   const [selectedFramework,setSelectedFramework] = useState<any|null>()  
+  const [filters, setFilters] = useState<APIParams>({page:0})
+  const [news,setNews] = useState<NewsResponse>({page:0,hits:[]})
+  const [loading,setLoading] = useState<Boolean>(false)
 
-
-  
-
+  const handleOnOptionClick = useCallback((option:any)=>{
+    setSelectedFramework(option.name);
+    setFilters({
+      page:0,
+      query: option.id
+    })
+    fetchNews()
+  },[])
 
   const onRenderOption = (option: any) => {
-    return <div className="select-menu-item" onClick={()=>setSelectedFramework(option.id)}>
+    return <div className="select-menu-item" onClick={()=>handleOnOptionClick(option)}>
       <img className="select-menu-item-icon" src={option.icon} alt={`${option.text} - logo}` } />
       <div>
         {option.text}
@@ -23,20 +33,21 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
     </div>;
   };
 
-  const fetchNews = async ()=>{
+
+  const fetchNews = useCallback(async ()=>{
     try{
-      const response = await NewsService.index({
-        page:0,
-      })
-      console.log("RESPONSE",response)
+      setLoading(true)
+      const response = await NewsService.index(filters)
+      setNews(response)
+      setLoading(false)
     }catch(e){
+      setLoading(false)
       console.error(e)
     }
-
-  }
+  },[filters]) 
 
   useEffect(()=>{
-    
+    fetchNews()
   },[])
  
   return (
@@ -49,7 +60,12 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
           placeholder="Select your news"
         />
       )}
-      News List goes ehre
+      {
+        loading && (<span>Loading...</span>)
+      }
+      {
+        news.hits.map(article=>(<div key={article.id}>{article.text}</div>))
+      }
     </div>
   );
 };
