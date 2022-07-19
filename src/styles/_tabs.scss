@@ -1,28 +1,33 @@
-.tabs{
+.tabs {
   display: flex;
-  margin: 0px auto ;
+  margin: 0px auto;
   width: 200px;
   margin-bottom: 64px;
-  &-container{
+
+  &-container {
     width: 100%;
   }
-  .tab{
+
+  .tab {
     width: 50%;
     border: $tabs-border;
     color: $tabs-color;
-    padding:  0.5rem ;
+    padding: 0.5rem;
     text-align: center;
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
-    &.active{
+
+    &.active {
       color: $tabs-active-color;
       border: $tabs-border-active;
     }
-    &:first-child{
+
+    &:first-child {
       border-top-left-radius: 2px;
       border-bottom-left-radius: 2px;
     }
-    &:last-child{
+
+    &:last-child {
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px;
     }
