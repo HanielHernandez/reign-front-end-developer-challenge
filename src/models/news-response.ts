@@ -6,4 +6,5 @@ export interface NewsResponse {
   page: number;
   params?: string;
   query?: string;
+  nbPages?: number;
 }

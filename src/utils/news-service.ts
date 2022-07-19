@@ -21,7 +21,17 @@ export class NewsService {
   }
 
   getFavs(params: APIParams): NewsResponse {
-    return { hits: this.favs, page: 0 };
+    const { hitsPerPage, page } = { ...DEFAUL_PARAMS, ...params };
+
+    console.log("params for locale ", params);
+    const offset = hitsPerPage * (page || 0);
+    const hits = this.favs.slice(offset, offset + hitsPerPage);
+
+    return {
+      hits,
+      nbPages: Math.ceil(this.favs.length / hitsPerPage) + 1,
+      ...(page ? { page } : { page: 0 }),
+    };
   }
 
   get favs(): Hit[] {
@@ -51,6 +61,7 @@ export class NewsService {
   setQueryFilter(filter: Framework): void {
     localStorage.setItem("query_filter", JSON.stringify(filter));
   }
+
   get queryFilter(): Framework | undefined {
     const filter = localStorage.getItem("query_filter");
     return filter ? JSON.parse(filter) : undefined;

@@ -7,6 +7,7 @@ import newsService from "../utils/news-service";
 import NewsService from "../utils/news-service";
 import Loading from "./Loading";
 import { NewListItem } from "./NewsListItem";
+import Pagination from "./Pagination";
 import Select from "./select";
 
 interface NewListProps {
@@ -41,20 +42,27 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
     });
     try {
       setLoading(true);
-      const response = await NewsService.index(filters);
+      const response =
+        mode != "all"
+          ? NewsService.getFavs(filters)
+          : await NewsService.index(filters);
       setNews(response);
       setLoading(false);
     } catch (e) {
       setLoading(false);
       console.error(e);
     }
+  }, [filters, mode]);
+
+  useEffect(() => {
+    fetchNews();
   }, [filters]);
 
   useEffect(() => {
-    if (mode == "all") {
-      fetchNews();
-    }
-  }, [filters]);
+    setFilters({
+      page: 0,
+    });
+  }, [mode]);
 
   return (
     <div className="tabs-content">
@@ -65,12 +73,13 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
         hide={mode != "all"}
         placeholder="Select your news"
       />
-      {loading && (
-        <div className="spinner-container">
-          <Loading></Loading>
-        </div>
-      )}
+
       <div className="card-container">
+        {loading && (
+          <div className="spinner-container">
+            <Loading></Loading>
+          </div>
+        )}
         {news.hits.map((article) => {
           return (
             <NewListItem
@@ -82,6 +91,16 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
           );
         })}
       </div>
+      <Pagination
+        onChange={(page: number) =>
+          setFilters({
+            ...filters,
+            page: page - 1,
+          })
+        }
+        totalPages={news.nbPages || 0}
+        currentPage={news.page + 1 || 0}
+      ></Pagination>
     </div>
   );
 };
