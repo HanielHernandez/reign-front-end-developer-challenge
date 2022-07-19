@@ -1,0 +1,13 @@
+.tabs{
+  .tab{
+    border-radius: 2px;
+    border: $tabs-border;
+    color: $tabs-color;
+    padding: 2rem 0.5rem;
+    font-size: bold;
+    &.active{
+      color: $tabs-active-color;
+      border: $tabs-border-active;
+    }
+  }
+}
