@@ -1,10 +1,10 @@
-
 $blue1: #1797ff;
 $gray1: #979797;
 $gray2: #606060;
 $gray3: #2e2e2e;
-$gray-4: #3b3b3b;
-$gray-5: #343434;
+$gray4: #3b3b3b;
+$gray5: #343434;
+$gray6: #fcfcfc;
 
 $button-border-color: rgba(0, 0, 0, 0.15);
 $button-color: rgba(0, 0, 0, 0.65);
@@ -12,12 +12,18 @@ $button-color: rgba(0, 0, 0, 0.65);
 $body-background-color: #fcfcfc;
 $nav-height: 114px;
 
-$tabs-border:  solid 1px #d6d6d6;
-$tabs-border-active:  solid 1px $blue1;
+$tabs-border: solid 1px #d6d6d6;
+$tabs-border-active: solid 1px $blue1;
 $tabs-color: $gray2;
 $tabs-active-color: $blue1;
 
-$select-input-border:   solid 1px $gray3;
-$select-input-placeholder-color: $gray-5;
+$select-input-border: solid 1px $gray3;
+$select-input-placeholder-color: $gray5;
 
 
+$card-background-color: #ffffff;
+$card-border: 1px solid $gray1;
+$card-border-radius: 6px;
+
+$card-title-font-size: 0.6875rem;
+$card-title-color: #767676;

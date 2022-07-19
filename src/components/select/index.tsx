@@ -30,7 +30,7 @@ export const Select: FC<SelectProps> = ({
         <>
           <div className="select-menu">
             {options.map((option) => {
-              return onRenderOptions(option)
+              return onRenderOptions(option);
             })}
           </div>
           <div

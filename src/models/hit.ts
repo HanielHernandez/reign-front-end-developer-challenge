@@ -1,7 +1,7 @@
 export interface Hit {
   author: string;
   created_at: string;
-  text: string;
+  story_title: string;
   id: string;
-  url:string;
+  story_url: string;
 }
