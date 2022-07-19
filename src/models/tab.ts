@@ -1,6 +1,6 @@
-import { FunctionComponent } from "react";
+import {  ReactNode } from "react";
 
 export interface Tab {
   name: string,
-  component: FunctionComponent
+  component: ReactNode
 }

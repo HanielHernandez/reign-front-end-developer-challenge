@@ -2,6 +2,10 @@
   display: flex;
   margin: 0px auto ;
   width: 200px;
+  margin-bottom: 64px;
+  &-container{
+    width: 100%;
+  }
   .tab{
     width: 50%;
     border: $tabs-border;
