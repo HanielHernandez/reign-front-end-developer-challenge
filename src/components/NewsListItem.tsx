@@ -23,7 +23,7 @@ export const NewListItem: FC<NewListItemProps> = ({
 
   return (
     <div className="card">
-      <div className="card-content">
+      <a href={hit.story_url} target="blank" className="card-content">
         <div className="card-title">
           <img src={timeLogo} alt="time-logo" className="card-title-icon" />
           {`${getTimeFronNow(hit.created_at)} by ${hit.author}`}
@@ -32,14 +32,20 @@ export const NewListItem: FC<NewListItemProps> = ({
           className="card-text"
           dangerouslySetInnerHTML={{ __html: hit.story_title }}
         ></div>
-        <div className="card-side" onClick={() => onIconClick(hit)}>
+        <div
+          className="card-side"
+          onClick={(e) => {
+            e.preventDefault();
+            onIconClick(hit);
+          }}
+        >
           <img
             src={favorite ? favoriteLogoOn : favoriteLogoOff}
             alt="favorite logo"
             className="card-side-logo"
           />
         </div>
-      </div>
+      </a>
     </div>
   );
 };

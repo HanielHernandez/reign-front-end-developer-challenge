@@ -51,7 +51,9 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   }, [filters]);
 
   useEffect(() => {
-    fetchNews();
+    if (mode == "all") {
+      fetchNews();
+    }
   }, [filters]);
 
   return (
