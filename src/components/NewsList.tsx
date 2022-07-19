@@ -14,14 +14,23 @@ interface NewListProps {
   mode: string;
 }
 const NewsList: FC<NewListProps> = ({ mode }) => {
-  const [selectedFramework, setSelectedFramework] = useState<any | null>();
-  const [filters, setFilters] = useState<APIParams>({ page: 0 });
+  const [selectedFramework, setSelectedFramework] = useState<any | null>(
+    NewsService.queryFilter || null
+  );
+  const [filters, setFilters] = useState<APIParams>({
+    page: 0,
+    ...(NewsService.queryFilter != undefined
+      ? {
+          query: NewsService.queryFilter.id,
+        }
+      : {}),
+  });
   const [news, setNews] = useState<NewsResponse>({ page: 0, hits: [] });
   const [loading, setLoading] = useState<Boolean>(false);
-  const [favs, setFavs] = useState<Hit[]>(NewsService.favs);
 
   const handleOnQueryChange = useCallback((option: any) => {
     console.log("query change", option);
+    NewsService.setQueryFilter(option);
     setSelectedFramework(option);
     setFilters({
       page: 0,
@@ -30,9 +39,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   }, []);
 
   const handleOnIconClick = (hit: Hit) => {
-    console.log(hit);
     NewsService.saveAsFav(hit);
-    setFavs(NewsService.favs);
   };
 
   const fetchNews = useCallback(async () => {
