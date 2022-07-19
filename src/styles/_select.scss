@@ -1,23 +1,30 @@
-.select{
-  &-container{
+.select {
+  &-container {
     position: relative;
     max-width: 240px;
     width: 100%;
+
+    &.hidden {
+      visibility: hidden
+    }
   }
-  &-input{
+
+  &-input {
     width: 100%;
-    padding: 5px 12px ;
+    padding: 5px 12px;
     height: 32px;
     border-radius: 4px;
-    border:$select-input-border;
+    border: $select-input-border;
     font-size: 14px;
     outline: none;
     z-index: 99;
-    &::placeholder{
+
+    &::placeholder {
       color: $select-input-placeholder-color;
     }
   }
-  &-menu{
+
+  &-menu {
     width: 100%;
     background-color: #fff;
     box-shadow: 0 2px 2px 0 #dad8d8;
@@ -25,22 +32,26 @@
     position: absolute;
     top: 100%;
     left: 0;
-    &-item{
+
+    &-item {
       display: flex;
-      padding: 0.75rem ;
+      padding: 0.75rem;
       font-size: 0.875rem;
       justify-content: start;
       cursor: pointer;
       align-items: center;
-      &:hover{
+
+      &:hover {
         background-color: #eaeaea;
       }
+
       &-icon {
         margin-right: 0.75rem;
       }
     }
   }
-  &-cover{
+
+  &-cover {
     position: fixed;
     top: 0;
     left: 0;

@@ -56,14 +56,13 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 
   return (
     <div>
-      {mode == "all" && (
-        <Select
-          value={selectedFramework?.text || ""}
-          options={frameworkOptions}
-          onChange={handleOnQueryChange}
-          placeholder="Select your news"
-        />
-      )}
+      <Select
+        value={selectedFramework?.text || ""}
+        options={frameworkOptions}
+        onChange={handleOnQueryChange}
+        hide={mode != "all"}
+        placeholder="Select your news"
+      />
       {loading && <Loading></Loading>}
       <div className="card-container">
         {news.hits.map((article) => {

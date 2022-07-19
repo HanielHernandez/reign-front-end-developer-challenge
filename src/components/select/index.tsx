@@ -7,6 +7,7 @@ interface SelectProps {
   options: any[];
   value: string;
   onChange: (item: SelectOption) => void;
+  hide?: boolean;
 }
 
 export const Select: FC<SelectProps> = ({
@@ -14,6 +15,7 @@ export const Select: FC<SelectProps> = ({
   placeholder,
   value,
   onChange,
+  hide,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleOnOptionClick = (option: SelectOption) => {
@@ -22,7 +24,7 @@ export const Select: FC<SelectProps> = ({
   };
 
   return (
-    <div className="select-container">
+    <div className={`select-container ${hide ? "hidden" : false}`}>
       <input
         type="text"
         value={value}
