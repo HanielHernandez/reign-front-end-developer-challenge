@@ -18,7 +18,8 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   const [loading, setLoading] = useState<Boolean>(false);
   const [favs, setFavs] = useState<Hit[]>(NewsService.favs);
 
-  const handleOnOptionClick = useCallback((option: any) => {
+  const handleOnQueryChange = useCallback((option: any) => {
+    console.log("query change", option);
     setSelectedFramework(option);
     setFilters({
       page: 0,
@@ -26,21 +27,6 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
     });
   }, []);
 
-  const onRenderOption = (option: any) => {
-    return (
-      <div
-        className="select-menu-item"
-        onClick={() => handleOnOptionClick(option)}
-      >
-        <img
-          className="select-menu-item-icon"
-          src={option.icon}
-          alt={`${option.text} - logo}`}
-        />
-        <div>{option.text}</div>
-      </div>
-    );
-  };
   const handleOnIconClick = (hit: Hit) => {
     console.log(hit);
     NewsService.saveAsFav(hit);
@@ -69,7 +55,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
         <Select
           value={selectedFramework?.text || ""}
           options={frameworkOptions}
-          onRenderOptions={onRenderOption}
+          onChange={handleOnQueryChange}
           placeholder="Select your news"
         />
       )}

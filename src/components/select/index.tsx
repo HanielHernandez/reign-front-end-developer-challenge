@@ -1,19 +1,25 @@
 import { FC, ReactNode, useMemo, useState } from "react";
+import { SelectOption } from "../../models/select-option";
+import SelectItem from "./select-item";
 
 interface SelectProps {
   placeholder: string;
   options: any[];
   value: string;
-  onRenderOptions: (item: any) => ReactNode;
+  onChange: (item: SelectOption) => void;
 }
 
 export const Select: FC<SelectProps> = ({
   options,
   placeholder,
   value,
-  onRenderOptions,
+  onChange,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleOnOptionClick = (option: SelectOption) => {
+    setIsMenuOpen(false);
+    onChange(option);
+  };
 
   return (
     <div className="select-container">
@@ -30,7 +36,12 @@ export const Select: FC<SelectProps> = ({
         <>
           <div className="select-menu">
             {options.map((option) => {
-              return onRenderOptions(option);
+              return (
+                <SelectItem
+                  option={option}
+                  onClick={() => handleOnOptionClick(option)}
+                />
+              );
             })}
           </div>
           <div
