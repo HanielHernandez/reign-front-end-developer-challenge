@@ -1,7 +1,9 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { frameworkOptions } from "../constants";
 import { APIParams } from "../models/api-params";
+import { Hit } from "../models/hit";
 import { NewsResponse } from "../models/news-response";
+import newsService from "../utils/news-service";
 import NewsService from "../utils/news-service";
 import { NewListItem } from "./NewsListItem";
 import Select from "./select";
@@ -14,6 +16,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   const [filters, setFilters] = useState<APIParams>({ page: 0 });
   const [news, setNews] = useState<NewsResponse>({ page: 0, hits: [] });
   const [loading, setLoading] = useState<Boolean>(false);
+  const [favs, setFavs] = useState<Hit[]>(NewsService.favs);
 
   const handleOnOptionClick = useCallback((option: any) => {
     setSelectedFramework(option.name);
@@ -38,6 +41,11 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
         <div>{option.text}</div>
       </div>
     );
+  };
+  const handleOnIconClick = (hit: Hit) => {
+    console.log(hit);
+    NewsService.saveAsFav(hit);
+    setFavs(NewsService.favs);
   };
 
   const fetchNews = useCallback(async () => {
@@ -69,7 +77,14 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
       {loading && <span>Loading...</span>}
       <div className="card-container">
         {news.hits.map((article) => {
-          return <NewListItem key={article.id} hit={article} />;
+          return (
+            <NewListItem
+              key={article.objectID}
+              onIconClick={handleOnIconClick}
+              favorite={NewsService.getFav(article) != undefined}
+              hit={article}
+            />
+          );
         })}
       </div>
     </div>

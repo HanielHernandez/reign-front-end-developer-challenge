@@ -32,7 +32,7 @@ export const NewListItem: FC<NewListItemProps> = ({
           className="card-text"
           dangerouslySetInnerHTML={{ __html: hit.story_title }}
         ></div>
-        <div className="card-side" onClick={() => onIconClick}>
+        <div className="card-side" onClick={() => onIconClick(hit)}>
           <img
             src={favorite ? favoriteLogoOn : favoriteLogoOff}
             alt="favorite logo"

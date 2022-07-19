@@ -4,4 +4,5 @@ export interface Hit {
   story_title: string;
   id: string;
   story_url: string;
+  objectID: string;
 }
