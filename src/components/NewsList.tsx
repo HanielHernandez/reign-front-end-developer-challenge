@@ -5,6 +5,7 @@ import { Hit } from "../models/hit";
 import { NewsResponse } from "../models/news-response";
 import newsService from "../utils/news-service";
 import NewsService from "../utils/news-service";
+import Loading from "./Loading";
 import { NewListItem } from "./NewsListItem";
 import Select from "./select";
 
@@ -34,6 +35,10 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   };
 
   const fetchNews = useCallback(async () => {
+    setNews({
+      ...news,
+      hits: [],
+    });
     try {
       setLoading(true);
       const response = await NewsService.index(filters);
@@ -59,7 +64,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
           placeholder="Select your news"
         />
       )}
-      {loading && <span>Loading...</span>}
+      {loading && <Loading></Loading>}
       <div className="card-container">
         {news.hits.map((article) => {
           return (
