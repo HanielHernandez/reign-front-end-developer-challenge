@@ -29,7 +29,7 @@ export const Select: FC<SelectProps> = ({
         <>
 
           <div className="select-menu">
-            {options.map((option) => onRenderOptions(option,))}
+            {options.map((option) => onRenderOptions(option))}
           </div>
           <div className="select-cover" onClick={()=>setIsMenuOpen(false)}></div>
         </>

@@ -17,3 +17,5 @@ export const frameworkOptions = [
     icon:vueLogo
   },
 ];
+export const API_URL =  'https://hn.algolia.com/api/v1/' 
+export const SEARCH_BY_DATE_URL =  `search_by_date`
