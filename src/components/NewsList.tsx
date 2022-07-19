@@ -55,7 +55,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   }, [filters]);
 
   return (
-    <div>
+    <div className="tabs-content">
       <Select
         value={selectedFramework?.text || ""}
         options={frameworkOptions}
@@ -63,7 +63,11 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
         hide={mode != "all"}
         placeholder="Select your news"
       />
-      {loading && <Loading></Loading>}
+      {loading && (
+        <div className="spinner-container">
+          <Loading></Loading>
+        </div>
+      )}
       <div className="card-container">
         {news.hits.map((article) => {
           return (
