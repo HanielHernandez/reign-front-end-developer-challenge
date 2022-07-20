@@ -14,9 +14,9 @@ export const Pagination: FC<PaginationProps> = ({
   onChange,
 }) => {
   const pages = useMemo(() => {
-    const siblingCount = 1;
+    const siblingCount = 3;
     const totalPageNumbers = siblingCount + 5;
-    const totalPagesCount = totalPages - 1;
+    const totalPagesCount = totalPages;
     if (totalPageNumbers >= totalPagesCount) {
       return range(1, totalPagesCount);
     }
@@ -66,7 +66,7 @@ export const Pagination: FC<PaginationProps> = ({
       {pages?.map((page: string | number) => {
         return typeof page == "number" ? (
           <button
-            key={`page-${page}`}
+            key={`page-button-${page}`}
             onClick={() => onChange(page)}
             className={`pagination-button ${
               page == currentPage ? "active" : ""
@@ -80,7 +80,7 @@ export const Pagination: FC<PaginationProps> = ({
       })}
 
       <button
-        disabled={currentPage == totalPages - 1}
+        disabled={currentPage == totalPages}
         onClick={() => onChange(currentPage + 1)}
         className="pagination-button"
       >

@@ -40,6 +40,7 @@ export const NewListItem: FC<NewListItemProps> = ({
           }}
         >
           <img
+            data-testid="favorite-logo"
             src={favorite ? favoriteLogoOn : favoriteLogoOff}
             alt="favorite logo"
             className="card-side-logo"

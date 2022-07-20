@@ -74,6 +74,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   return (
     <div className="tabs-content">
       <Select
+        data-testid="select"
         value={selectedFramework?.text || ""}
         options={frameworkOptions}
         onChange={handleOnQueryChange}

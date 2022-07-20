@@ -19,6 +19,7 @@ const Tabs: FunctionComponent<Props> = ({ tabs, defaultActiveTab }) => {
           return (
             <div
               key={tab.name}
+              data-testid="tab"
               className={`tab ${activeTab == tab.name ? "active" : ""}`}
               onClick={() => setActiveTab(tab.name)}
             >
