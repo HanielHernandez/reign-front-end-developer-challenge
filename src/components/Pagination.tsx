@@ -66,7 +66,7 @@ export const Pagination: FC<PaginationProps> = ({
       {pages?.map((page: string | number) => {
         return typeof page == "number" ? (
           <button
-            key={`page-${page}`}
+            key={`page-button-${page}`}
             onClick={() => onChange(page)}
             className={`pagination-button ${
               page == currentPage ? "active" : ""
