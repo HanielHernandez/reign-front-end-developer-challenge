@@ -24,7 +24,10 @@ export const Select: FC<SelectProps> = ({
   };
 
   return (
-    <div className={`select-container ${hide ? "hidden" : ""}`}>
+    <div
+      data-testid="select-container"
+      className={`select-container ${hide ? "hidden" : ""}`}
+    >
       <input
         type="text"
         value={value}

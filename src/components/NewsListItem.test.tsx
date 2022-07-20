@@ -1,35 +1,42 @@
 import { render } from "@testing-library/react";
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 import { NewListItem } from "./NewsListItem";
 import favoriteLogoOff from "../assets/favorite_ff.png";
 
-interface OptionalPros {
+interface OptionalProps {
   hit: any;
   favorite?: boolean;
   onIconClick: (hit: any) => void;
 }
-const renderComponent = (props: OptionalPros) => {
+const renderComponent = (props: OptionalProps) => {
   return render(<NewListItem {...props}></NewListItem>);
 };
 
-describe("Tet for <NewListItem/>", () => {
-  const title = "Best React Practice for 2022";
-  const wrapper = renderComponent({
-    hit: {
-      story_title: title,
-    },
-    onIconClick: () => {},
-    favorite: false
-  });
-  test("should render title correctly", () => {
+describe("Test for <NewListItem/>", () => {
+  it("it should render title correctly", () => {
+    const title = "Best React Practice for 2022";
+    const wrapper = renderComponent({
+      hit: {
+        story_title: title,
+      },
+      onIconClick: () => {},
+      favorite: false,
+    });
     const titleElement = wrapper.getByText(title);
     expect(titleElement).toBeDefined();
   });
-  test("should render favorite icon correctly", ()=>{
-    const favoriteIcon =  wrapper.getByTestId("favorite_logo") as HTMLImageElement 
-    expect(favoriteIcon.src).toBe(favoriteLogoOff)
-    
-  })
 
-  test;
+  it("it should render favorite icon correctly", () => {
+    const wrapper = renderComponent({
+      hit: {
+        story_title: "",
+      },
+      onIconClick: () => {},
+      favorite: false,
+    });
+    const favoriteIcon = wrapper.getByAltText(/favorite/i) as HTMLImageElement;
+    expect(favoriteIcon.src).toBe(
+      "http://localhost:3000/src/assets/favorite_off.png"
+    );
+  });
 });
