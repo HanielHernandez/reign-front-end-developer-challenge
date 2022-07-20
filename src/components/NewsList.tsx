@@ -80,6 +80,9 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
         hide={mode != "all"}
         placeholder="Select your news"
       />
+      {!loading && news.hits.length == 0 && (
+        <p style={{ textAlign: "center" }}>No news found</p>
+      )}
 
       <div className="card-container">
         {loading && (
