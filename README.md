@@ -4,7 +4,7 @@ Hi, I'm Haniel Hernández, and this is the repo that contains the code for the R
 
 ## Considerations
 
-This Project was created using **vite** wich will allow us increadibly fast compilations times and a overall better development experience, all thes styling was done by using **SASS**, options like React Styled Components were take in count but decide to opt for plain SASS at the end, the testing was done by using the **vitest** wich its a test suit powered by also vite, and like vite it's also blazingly fast and not so resource hungry.
+This Project was created using **vite** wich will allow us increadibly fast compilations times and a overall better development experience, all the styling was done by using **SASS**, options like React Styled Components were take in count but decide to opt for plain SASS at the end, the testing was done by using the **vitest** wich its a test suit powered by also vite, and like vite it's also blazingly fast and not so resource hungry.
 
 ## How to run
 
