@@ -39,5 +39,5 @@
 | ----------- | :------------------------------: | --------------------------------------------------------------------------------------------------------- |
 | totalPages  |            **Number**            | A number porperty used to determine the amount of pages and the last page that the component would render |
 | currentPage |            **Number**            | A number the defines current active page of the pagination component,                                     |
-| onChange    | **function (page:number)=>void** | A function that's gets triggered when one of the page button it's clicked                                 |
+| onChange    | **function (page:number)=>void** | A function that's gets triggered when one of the pagination buttons it's clicked                                 |
   
