@@ -10,20 +10,34 @@ const http = axios.create({
 })
 
 export class NewsService {
+	timer: any
+	constructor() {
+		this.timer = null
+	}
+
 	async index(params: APIParams): Promise<NewsResponse> {
-		const { data } = await http.get(SEARCH_BY_DATE_URL, {
-			params: {
-				...DEFAUL_PARAMS,
-				...params
+		return new Promise((resolve) => {
+			if (this.timer) {
+				clearTimeout(this.timer)
+				this.timer = null
 			}
+
+			this.timer = setTimeout(async () => {
+				const { data } = await http.get(SEARCH_BY_DATE_URL, {
+					params: {
+						...DEFAUL_PARAMS,
+						...params
+					}
+				})
+				resolve({
+					...data,
+					hits: data.hits.filter(
+						(article: Article) =>
+							article.story_title && article.created_at && article.objectID
+					)
+				})
+			})
 		})
-		return {
-			...data,
-			hits: data.hits.filter(
-				(article: Article) =>
-					article.story_title && article.created_at && article.objectID
-			)
-		}
 	}
 
 	getSavedFavs(params: APIParams): NewsResponse {
