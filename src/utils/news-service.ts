@@ -22,8 +22,6 @@ export class NewsService {
 
   getSavedFavs(params: APIParams): NewsResponse {
     const { hitsPerPage, page } = { ...DEFAUL_PARAMS, ...params };
-
-    console.log("params for locale ", params);
     const offset = hitsPerPage * (page || 0);
     const hits = this.favs.slice(offset, offset + hitsPerPage);
 

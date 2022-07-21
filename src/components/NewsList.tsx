@@ -28,20 +28,6 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   const [news, setNews] = useState<NewsResponse>({ page: 0, hits: [] });
   const [loading, setLoading] = useState<Boolean>(false);
   const [favs, setFavs] = useState<Hit[]>(NewsService.favs);
-  const handleOnQueryChange = useCallback((option: any) => {
-    console.log("query change", option);
-    NewsService.setQueryFilter(option);
-    setSelectedFramework(option);
-    setFilters({
-      page: 0,
-      query: option.id,
-    });
-  }, []);
-
-  const handleOnIconClick = (hit: Hit) => {
-    NewsService.saveAsFav(hit);
-    setFavs(NewsService.favs);
-  };
 
   const fetchNews = useCallback(async () => {
     setNews({
@@ -61,6 +47,20 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
       console.error(e);
     }
   }, [filters, mode]);
+
+  const handleOnQueryChange = useCallback((option: any) => {
+    NewsService.setQueryFilter(option);
+    setSelectedFramework(option);
+    setFilters({
+      page: 0,
+      query: option.id,
+    });
+  }, []);
+
+  const handleOnIconClick = (hit: Hit) => {
+    NewsService.saveAsFav(hit);
+    setFavs(NewsService.favs);
+  };
 
   useEffect(() => {
     fetchNews();
