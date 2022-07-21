@@ -8,7 +8,7 @@ import NewsService from "../utils/news-service";
 import Loading from "./Loading";
 import { NewListItem } from "./NewsListItem";
 import Pagination from "./Pagination";
-import Select from "./select";
+import Select from "./select/Index";
 
 interface NewListProps {
   mode: string;
