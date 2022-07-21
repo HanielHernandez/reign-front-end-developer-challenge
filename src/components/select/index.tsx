@@ -1,4 +1,4 @@
-import { FC, ReactNode, useMemo, useState } from 'react'
+import { FC, useState } from 'react'
 import { SelectOption } from '../../models/select-option'
 import SelectItem from './select-item'
 
