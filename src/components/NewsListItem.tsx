@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Hit } from "../models/hit";
 import timeLogo from "../assets/time.png";
 import dayjs from "dayjs";

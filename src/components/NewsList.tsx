@@ -27,7 +27,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
   });
   const [news, setNews] = useState<NewsResponse>({ page: 0, hits: [] });
   const [loading, setLoading] = useState<Boolean>(false);
-
+  const [favs, setFavs] = useState<Hit[]>(NewsService.favs);
   const handleOnQueryChange = useCallback((option: any) => {
     console.log("query change", option);
     NewsService.setQueryFilter(option);
@@ -40,6 +40,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 
   const handleOnIconClick = (hit: Hit) => {
     NewsService.saveAsFav(hit);
+    setFavs(NewsService.favs);
   };
 
   const fetchNews = useCallback(async () => {
@@ -51,7 +52,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
       setLoading(true);
       const response =
         mode != "all"
-          ? NewsService.getFavs(filters)
+          ? NewsService.getSavedFavs(filters)
           : await NewsService.index(filters);
       setNews(response);
       setLoading(false);
@@ -71,6 +72,10 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
     });
   }, [mode]);
 
+  const isInFavs = (article: Hit) => {
+    return favs.findIndex((x) => x.objectID == article.objectID) > -1;
+  };
+
   return (
     <div className="tabs-content">
       <Select
@@ -81,24 +86,30 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
         hide={mode != "all"}
         placeholder="Select your news"
       />
-      {!loading && news.hits.length == 0 && (
-        <p style={{ textAlign: "center" }}>No news found</p>
-      )}
 
       <div className="card-container">
+        {!loading && news.hits.length == 0 && (
+          <div style={{ width: "100%", textAlign: "center" }}>
+            No news found
+          </div>
+        )}
         {loading && (
           <div className="spinner-container">
             <Loading></Loading>
           </div>
         )}
         {news.hits.map((article) => {
+          const isFav = isInFavs(article);
           return (
-            <NewListItem
-              key={article.objectID}
-              onIconClick={handleOnIconClick}
-              favorite={NewsService.getFav(article) != undefined}
-              hit={article}
-            />
+            <>
+              {isFav}
+              <NewListItem
+                key={article.objectID}
+                onIconClick={handleOnIconClick}
+                favorite={isFav}
+                hit={article}
+              />
+            </>
           );
         })}
       </div>

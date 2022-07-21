@@ -20,7 +20,7 @@ export class NewsService {
     return data;
   }
 
-  getFavs(params: APIParams): NewsResponse {
+  getSavedFavs(params: APIParams): NewsResponse {
     const { hitsPerPage, page } = { ...DEFAUL_PARAMS, ...params };
 
     console.log("params for locale ", params);
@@ -41,7 +41,6 @@ export class NewsService {
 
   saveAsFav(hit: Hit): void {
     const existingFav = this.getFav(hit);
-    console.log(this.favs);
     if (existingFav) {
       localStorage.setItem(
         "saved_favs",
