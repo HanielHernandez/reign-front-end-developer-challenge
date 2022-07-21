@@ -8,11 +8,11 @@ function App() {
 	const tabs: Tab[] = [
 		{
 			name: 'All',
-			component: NewList
+			onRender: () => <NewList mode="all" />
 		},
 		{
 			name: 'My Faves',
-			component: NewList
+			onRender: () => <NewList mode="favs" />
 		}
 	]
 	return (

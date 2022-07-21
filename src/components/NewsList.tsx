@@ -32,6 +32,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 		})
 		try {
 			setLoading(true)
+			console.log('MODE IS SET TO ', mode)
 			const response =
 				mode != 'all'
 					? NewsService.getSavedFavs(filters)
@@ -52,7 +53,6 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 			page: 0,
 			query: option.id
 		})
-		//fetchNews()
 	}, [])
 
 	const handleOnIconClick = (article: Article) => {
@@ -99,7 +99,6 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 					const isFav = isInFavs(article)
 					return (
 						<>
-							{isFav}
 							<NewListItem
 								key={article.objectID}
 								onIconClick={handleOnIconClick}

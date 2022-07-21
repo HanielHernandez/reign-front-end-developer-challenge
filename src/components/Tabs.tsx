@@ -4,13 +4,12 @@ import { Tab } from '../models/tab'
 interface Props {
 	tabs: Tab[]
 	defaultActiveTab: string
-	onChange: (tab: Tab) => void
 }
 
 const Tabs: FunctionComponent<Props> = ({ tabs, defaultActiveTab }) => {
 	const [activeTab, setActiveTab] = useState<string>(defaultActiveTab)
 	const currentTab = useMemo(
-		() => tabs.find((tab) => tab.name == activeTab),
+		() => tabs.find((tab) => tab.name == activeTab) || tabs[0],
 		[activeTab]
 	)
 
@@ -33,11 +32,7 @@ const Tabs: FunctionComponent<Props> = ({ tabs, defaultActiveTab }) => {
 					)
 				})}
 			</div>
-			{currentTab && (
-				<currentTab.component
-					mode={currentTab.name == 'All' ? 'all' : 'favs'}
-				/>
-			)}
+			{currentTab.onRender()}
 		</div>
 	)
 }
