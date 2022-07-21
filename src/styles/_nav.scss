@@ -1,4 +1,4 @@
-nav {
+nav,.nav {
   max-height: $nav-height;
   padding: 2.625rem 1rem;
   box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
@@ -12,4 +12,9 @@ nav {
   .logo {
     max-width: 208px;
   }
+	&-container{
+		width: 100%;
+		max-width: 1140px;
+		margin: 0px auto;
+	}
 }

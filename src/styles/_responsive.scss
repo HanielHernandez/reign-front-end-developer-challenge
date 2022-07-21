@@ -25,21 +25,25 @@
 
 		}
 
-		&-text ,	&-title {
-		
+		&-text,
+		&-title {
+
 			//white-space: nowrap;
 			overflow: hidden;
 			flex-wrap: nowrap;
 			text-overflow: ellipsis;
 		}
-		&-text{
+
+		&-text {
 			height: 2.5rem;
 		}
 	}
 
+
+
 }
 
-@media (min-width: 1140) {
+@media (min-width: 1140px) {
 
 
 	.tabs {
@@ -47,5 +51,6 @@
 			padding: 0;
 		}
 	}
+
 
 }

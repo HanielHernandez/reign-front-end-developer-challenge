@@ -3,7 +3,9 @@ import logo from '../assets/logo.png'
 const TheNavbar: FC = () => {
 	return (
 		<nav>
-			<img className="logo" src={logo} alt="logo" />
+			<div className="nav-container">
+				<img className="logo" src={logo} alt="logo" />
+			</div>
 		</nav>
 	)
 }
