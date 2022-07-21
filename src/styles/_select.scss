@@ -29,6 +29,7 @@
     font-size: 14px;
     outline: none;
     z-index: 99;
+		cursor:pointer;
 
     &::placeholder {
       color: $select-input-placeholder-color;
