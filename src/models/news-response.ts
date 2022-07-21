@@ -1,10 +1,10 @@
-import { Hit } from "./hit";
+import { Hit } from './hit'
 
 export interface NewsResponse {
-  hits: Hit[];
-  hitsPerPage?: number;
-  page: number;
-  params?: string;
-  query?: string;
-  nbPages?: number;
+	hits: Hit[]
+	hitsPerPage?: number
+	page: number
+	params?: string
+	query?: string
+	nbPages?: number
 }

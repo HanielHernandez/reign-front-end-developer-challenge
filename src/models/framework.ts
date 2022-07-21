@@ -1,5 +1,5 @@
-export interface Framework{
-  name: string,
-  icon:string,
-  id:string
+export interface Framework {
+	name: string
+	icon: string
+	id: string
 }
