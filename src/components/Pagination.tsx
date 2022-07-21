@@ -63,7 +63,7 @@ export const Pagination: FC<PaginationProps> = ({
 				<div className="arrow right"></div>
 			</button>
 
-			{pages?.map((page: string | number) => {
+			{pages?.map((page: string | number, index: number) => {
 				return typeof page == 'number' ? (
 					<button
 						key={`page-button-${page}`}
@@ -75,7 +75,12 @@ export const Pagination: FC<PaginationProps> = ({
 						{page}
 					</button>
 				) : (
-					<button className="pagination-button dots">{DOTS}</button>
+					<button
+						key={`page-button-dots-${index}`}
+						className="pagination-button dots"
+					>
+						{DOTS}
+					</button>
 				)
 			})}
 

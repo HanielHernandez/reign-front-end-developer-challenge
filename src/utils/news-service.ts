@@ -17,7 +17,13 @@ export class NewsService {
 				...params
 			}
 		})
-		return data
+		return {
+			...data,
+			hits: data.hits.filter(
+				(article: Article) =>
+					article.story_title && article.created_at && article.objectID
+			)
+		}
 	}
 
 	getSavedFavs(params: APIParams): NewsResponse {
@@ -27,8 +33,8 @@ export class NewsService {
 
 		return {
 			hits,
-			nbPages: Math.ceil(this.favs.length / hitsPerPage) + 1,
-			...(page ? { page } : { page: 0 })
+			nbPages: Math.ceil(this.favs.length / hitsPerPage),
+			...(page ? { page: page - 1 } : { page: 0 })
 		}
 	}
 

@@ -1,5 +1,5 @@
 import { FC, useCallback, useEffect, useState } from 'react'
-import { frameworkOptions } from '../constants'
+import { ERROR_MESSAGE, frameworkOptions } from '../constants'
 import { APIParams } from '../models/api-params'
 import { Article } from '../models/Article'
 import { NewsResponse } from '../models/news-response'
@@ -18,15 +18,14 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 		useState<SelectOption | null>(NewsService.queryFilter || null)
 	const [filters, setFilters] = useState<APIParams>({
 		page: 0,
-		...(NewsService.queryFilter != undefined
-			? { query: NewsService.queryFilter.id }
-			: {})
+		...(selectedFramework ? { query: selectedFramework.id } : {})
 	})
 	const [news, setNews] = useState<NewsResponse>({ page: 0, hits: [] })
 	const [loading, setLoading] = useState<boolean>(false)
 	const [favs, setFavs] = useState<Article[]>(NewsService.favs)
-
+	const [errorMessage, setErrorMessage] = useState('')
 	const fetchNews = useCallback(async () => {
+		setErrorMessage('')
 		setNews({
 			...news,
 			hits: []
@@ -41,6 +40,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 			setLoading(false)
 		} catch (e) {
 			setLoading(false)
+			setErrorMessage(ERROR_MESSAGE)
 			console.error(e)
 		}
 	}, [filters, mode])
@@ -52,26 +52,20 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 			page: 0,
 			query: option.id
 		})
+		//fetchNews()
 	}, [])
 
 	const handleOnIconClick = (article: Article) => {
 		NewsService.saveAsFav(article)
 		setFavs(NewsService.favs)
 	}
-
-	useEffect(() => {
-		fetchNews()
-	}, [filters])
-
-	useEffect(() => {
-		setFilters({
-			page: 0
-		})
-	}, [mode])
-
 	const isInFavs = (article: Article) => {
 		return favs.findIndex((x) => x.objectID == article.objectID) > -1
 	}
+
+	useEffect(() => {
+		fetchNews()
+	}, [filters, mode])
 
 	return (
 		<div className="tabs-content">
@@ -85,9 +79,15 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 			/>
 
 			<div className="card-container">
-				{!loading && news.hits.length == 0 && (
+				{!loading && !errorMessage && news.hits.length == 0 && (
 					<div style={{ width: '100%', textAlign: 'center' }}>
 						No news found
+					</div>
+				)}
+
+				{!loading && errorMessage && (
+					<div style={{ color: 'red', width: '100%', textAlign: 'center' }}>
+						{errorMessage}
 					</div>
 				)}
 				{loading && (

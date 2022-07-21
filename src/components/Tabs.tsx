@@ -1,9 +1,10 @@
-import { FunctionComponent, useMemo, useState } from 'react'
+import { FunctionComponent, useCallback, useMemo, useState } from 'react'
 import { Tab } from '../models/tab'
 
 interface Props {
 	tabs: Tab[]
 	defaultActiveTab: string
+	onChange: (tab: Tab) => void
 }
 
 const Tabs: FunctionComponent<Props> = ({ tabs, defaultActiveTab }) => {
@@ -12,6 +13,10 @@ const Tabs: FunctionComponent<Props> = ({ tabs, defaultActiveTab }) => {
 		() => tabs.find((tab) => tab.name == activeTab),
 		[activeTab]
 	)
+
+	const handleOnTabClick = useCallback((tab: Tab) => {
+		setActiveTab(tab.name)
+	}, [])
 	return (
 		<div className="tabs-container">
 			<div className="tabs">
@@ -21,7 +26,7 @@ const Tabs: FunctionComponent<Props> = ({ tabs, defaultActiveTab }) => {
 							key={tab.name}
 							data-testid="tab"
 							className={`tab ${activeTab == tab.name ? 'active' : ''}`}
-							onClick={() => setActiveTab(tab.name)}
+							onClick={() => handleOnTabClick(tab)}
 						>
 							{tab.name}
 						</div>

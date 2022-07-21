@@ -19,8 +19,11 @@ export const frameworkOptions = [
 	}
 ]
 export const API_URL = 'https://hn.algolia.com/api/v1/'
-export const SEARCH_BY_DATE_URL = `search_by_date`
+export const SEARCH_BY_DATE_URL = 'search_by_date'
 export const DEFAUL_PARAMS = {
 	hitsPerPage: 8
 }
 export const DOTS = '...'
+
+export const ERROR_MESSAGE =
+	'Error: An unknown error happened and data could not be fetched, try again later'
