@@ -1,33 +1,51 @@
 @media (min-width: 756px) {
-  .card {
-    width: 50%;
-    padding-right: 1.25rem;
+	.card {
+		width: 50%;
+		padding-right: 1.25rem;
 
-    &:nth-child(2n) {
-      padding-left: 1.5625rem;
-      padding-right: 0;
-    }
-  }
+		&:nth-child(2n) {
+			padding-left: 1.5625rem;
+			padding-right: 0;
+		}
+	}
 
-  .select {
-    &-container {
-      max-width: 240px;
-    }
-  }
+	.select {
+		&-container {
+			max-width: 240px;
+		}
+	}
 
-  nav {
-    padding: 42px 150px;
-  }
+	nav {
+		padding: 42px 150px;
+	}
+
+	.card {
+		&-content {
+			max-height: 90px;
+
+		}
+
+		&-text ,	&-title {
+		
+			//white-space: nowrap;
+			overflow: hidden;
+			flex-wrap: nowrap;
+			text-overflow: ellipsis;
+		}
+		&-text{
+			height: 2.5rem;
+		}
+	}
 
 }
 
 @media (min-width: 1140) {
 
 
-  .tabs {
-    &-container {
-      padding: 0;
-    }
-  }
+	.tabs {
+		&-container {
+			padding: 0;
+		}
+	}
 
 }
