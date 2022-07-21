@@ -11,6 +11,7 @@ interface OptionalProps {
 const renderComponent = (props: OptionalProps) => {
 	return render(<NewListItem {...props}></NewListItem>)
 }
+const title = 'Best React Practice for 2022'
 
 const defaultProperties = {
 	hit: {
@@ -19,7 +20,7 @@ const defaultProperties = {
 		objectID: '',
 		id: '',
 		story_url: '',
-		story_title: 'title'
+		story_title: title
 	},
 	onIconClick: vi.fn(),
 	favorite: false
@@ -27,7 +28,6 @@ const defaultProperties = {
 
 describe('Test for <NewListItem/>', () => {
 	it('it should render title correctly', () => {
-		const title = 'Best React Practice for 2022'
 		const wrapper = renderComponent(defaultProperties)
 		const titleElement = wrapper.getByText(title)
 		expect(titleElement).toBeDefined()
