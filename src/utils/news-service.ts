@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { API_URL, DEFAUL_PARAMS, SEARCH_BY_DATE_URL } from '../constants'
 import { APIParams } from '../models/api-params'
-import {Article} from '../models/Article'
+import { Article } from '../models/Article'
 import { NewsResponse } from '../models/news-response'
 import { SelectOption } from '../models/select-option'
 
@@ -32,12 +32,12 @@ export class NewsService {
 		}
 	}
 
-	get favs():Article[] {
+	get favs(): Article[] {
 		const jsonString = localStorage.getItem('saved_favs')
 		return jsonString ? JSON.parse(jsonString) : []
 	}
 
-	saveAsFav(article:Article): void {
+	saveAsFav(article: Article): void {
 		const existingFav = this.getFav(article)
 		if (existingFav) {
 			localStorage.setItem(
@@ -47,12 +47,15 @@ export class NewsService {
 				)
 			)
 		} else {
-			localStorage.setItem('saved_favs', JSON.stringify([...this.favs,article]))
+			localStorage.setItem(
+				'saved_favs',
+				JSON.stringify([...this.favs, article])
+			)
 		}
 	}
 
-	getFav(article:Article):Article| undefined {
-		return this.favs.find((x) => x.objectID ==article.objectID)
+	getFav(article: Article): Article | undefined {
+		return this.favs.find((x) => x.objectID == article.objectID)
 	}
 
 	setQueryFilter(filter: SelectOption): void {

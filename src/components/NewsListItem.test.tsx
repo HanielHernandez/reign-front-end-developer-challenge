@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { NewListItem } from './NewsListItem'
-import {Article} from '../models/Article'
+import { Article } from '../models/Article'
 
 interface OptionalProps {
-	article:Article
+	article: Article
 	favorite?: boolean
-	onIconClick: (hit:Article) => void
+	onIconClick: (hit: Article) => void
 }
 const renderComponent = (props: OptionalProps) => {
 	return render(<NewListItem {...props}></NewListItem>)

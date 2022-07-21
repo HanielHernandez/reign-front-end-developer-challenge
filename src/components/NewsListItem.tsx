@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import {Article} from '../models/Article'
+import { Article } from '../models/Article'
 import timeLogo from '../assets/time.png'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'

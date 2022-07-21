@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react'
 import { frameworkOptions } from '../constants'
 import { APIParams } from '../models/api-params'
-import {Article} from '../models/Article'
+import { Article } from '../models/Article'
 import { NewsResponse } from '../models/news-response'
 import { SelectOption } from '../models/select-option'
 import NewsService from '../utils/news-service'
@@ -54,7 +54,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 		})
 	}, [])
 
-	const handleOnIconClick = (article:Article) => {
+	const handleOnIconClick = (article: Article) => {
 		NewsService.saveAsFav(article)
 		setFavs(NewsService.favs)
 	}
