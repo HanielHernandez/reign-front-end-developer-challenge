@@ -10,7 +10,7 @@ const http = axios.create({
 })
 
 export class NewsService {
-	timer: any
+	timer: NodeJS.Timeout | null
 	constructor() {
 		this.timer = null
 	}
