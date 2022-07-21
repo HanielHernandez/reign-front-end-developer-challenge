@@ -47,3 +47,6 @@ if you want to run the unit test created on the project you must run the folling
 npm run test
 ```
 
+## Component docs
+
+you can find more info about the componets created for this project at the [docs folder](docs/index.md)
