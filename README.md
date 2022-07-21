@@ -21,6 +21,14 @@ npm run dev
 ```
 after that a the server will be set up using the following addres http://127.0.0.1:5173/ .
 
+## Build
+
+To generate a build of the project run:
+
+```bash
+npm run build
+```
+
 ## Lintting and Formatting
 
 To  show the linting errors run:
