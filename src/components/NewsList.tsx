@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react'
 import { frameworkOptions } from '../constants'
 import { APIParams } from '../models/api-params'
-import { Hit } from '../models/hit'
+import {Article} from '../models/Article'
 import { NewsResponse } from '../models/news-response'
 import { SelectOption } from '../models/select-option'
 import NewsService from '../utils/news-service'
@@ -24,7 +24,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 	})
 	const [news, setNews] = useState<NewsResponse>({ page: 0, hits: [] })
 	const [loading, setLoading] = useState<boolean>(false)
-	const [favs, setFavs] = useState<Hit[]>(NewsService.favs)
+	const [favs, setFavs] = useState<Article[]>(NewsService.favs)
 
 	const fetchNews = useCallback(async () => {
 		setNews({
@@ -54,8 +54,8 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 		})
 	}, [])
 
-	const handleOnIconClick = (hit: Hit) => {
-		NewsService.saveAsFav(hit)
+	const handleOnIconClick = (article:Article) => {
+		NewsService.saveAsFav(article)
 		setFavs(NewsService.favs)
 	}
 
@@ -69,7 +69,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 		})
 	}, [mode])
 
-	const isInFavs = (article: Hit) => {
+	const isInFavs = (article: Article) => {
 		return favs.findIndex((x) => x.objectID == article.objectID) > -1
 	}
 
@@ -104,7 +104,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 								key={article.objectID}
 								onIconClick={handleOnIconClick}
 								favorite={isFav}
-								hit={article}
+								article={article}
 							/>
 						</>
 					)

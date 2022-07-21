@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { API_URL, DEFAUL_PARAMS, SEARCH_BY_DATE_URL } from '../constants'
 import { APIParams } from '../models/api-params'
-import { Framework } from '../models/framework'
-import { Hit } from '../models/hit'
+import {Article} from '../models/Article'
 import { NewsResponse } from '../models/news-response'
+import { SelectOption } from '../models/select-option'
 
 const http = axios.create({
 	baseURL: API_URL
@@ -32,13 +32,13 @@ export class NewsService {
 		}
 	}
 
-	get favs(): Hit[] {
+	get favs():Article[] {
 		const jsonString = localStorage.getItem('saved_favs')
 		return jsonString ? JSON.parse(jsonString) : []
 	}
 
-	saveAsFav(hit: Hit): void {
-		const existingFav = this.getFav(hit)
+	saveAsFav(article:Article): void {
+		const existingFav = this.getFav(article)
 		if (existingFav) {
 			localStorage.setItem(
 				'saved_favs',
@@ -47,19 +47,19 @@ export class NewsService {
 				)
 			)
 		} else {
-			localStorage.setItem('saved_favs', JSON.stringify([...this.favs, hit]))
+			localStorage.setItem('saved_favs', JSON.stringify([...this.favs,article]))
 		}
 	}
 
-	getFav(hit: Hit): Hit | undefined {
-		return this.favs.find((x) => x.objectID == hit.objectID)
+	getFav(article:Article):Article| undefined {
+		return this.favs.find((x) => x.objectID ==article.objectID)
 	}
 
-	setQueryFilter(filter: Framework): void {
+	setQueryFilter(filter: SelectOption): void {
 		localStorage.setItem('query_filter', JSON.stringify(filter))
 	}
 
-	get queryFilter(): Framework | undefined {
+	get queryFilter(): SelectOption | undefined {
 		const filter = localStorage.getItem('query_filter')
 		return filter ? JSON.parse(filter) : undefined
 	}

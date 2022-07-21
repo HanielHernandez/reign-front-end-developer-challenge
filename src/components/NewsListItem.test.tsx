@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import { NewListItem } from './NewsListItem'
-import { Hit } from '../models/hit'
+import {Article} from '../models/Article'
 
 interface OptionalProps {
-	hit: Hit
+	article:Article
 	favorite?: boolean
-	onIconClick: (hit: Hit) => void
+	onIconClick: (hit:Article) => void
 }
 const renderComponent = (props: OptionalProps) => {
 	return render(<NewListItem {...props}></NewListItem>)
@@ -14,7 +14,7 @@ const renderComponent = (props: OptionalProps) => {
 const title = 'Best React Practice for 2022'
 
 const defaultProperties = {
-	hit: {
+	article: {
 		author: '',
 		created_at: '',
 		objectID: '',

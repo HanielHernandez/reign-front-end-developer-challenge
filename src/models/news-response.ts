@@ -1,7 +1,7 @@
-import { Hit } from './hit'
+import {Article} from './Article'
 
 export interface NewsResponse {
-	hits: Hit[]
+	hits:Article[]
 	hitsPerPage?: number
 	page: number
 	params?: string

@@ -1,4 +1,4 @@
-export interface Hit {
+export interface Article {
 	author: string
 	created_at: string
 	story_title: string
