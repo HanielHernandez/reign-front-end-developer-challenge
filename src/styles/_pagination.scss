@@ -19,6 +19,13 @@
     color: rgba(0, 0, 0, 0.65);
     margin-bottom: 0.5rem;
 
+		&:disabled{
+			opacity: 0.5;
+		}
+		
+		&:disabled{
+			opacity: 0.5;
+		}
     &.dots {
       border-color: rgba(#000000, 0);
       background-color: rgba(#000000, 0);
