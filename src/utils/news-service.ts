@@ -34,7 +34,7 @@ export class NewsService {
 		return {
 			hits,
 			nbPages: Math.ceil(this.favs.length / hitsPerPage),
-			...(page ? { page: page - 1 } : { page: 0 })
+			page
 		}
 	}
 

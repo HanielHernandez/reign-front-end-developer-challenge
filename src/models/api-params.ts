@@ -1,4 +1,4 @@
 export interface APIParams {
-	page?: number
+	page: number
 	query?: string
 }
