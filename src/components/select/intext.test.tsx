@@ -1,11 +1,11 @@
 import { render, RenderResult, waitFor } from '@testing-library/react'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import Select from '.'
 import { SelectOption } from '../../models/select-option'
 
 interface OptionalProps {
 	placeholder: string
-	options: any[]
+	options: SelectOption[]
 	value: string
 	onChange: (item: SelectOption) => void
 	hide?: boolean
@@ -29,7 +29,7 @@ describe('Test for <Select/>', () => {
 			}
 		],
 		value: '',
-		onChange: () => {}
+		onChange: vi.fn()
 	}
 
 	beforeEach(() => {

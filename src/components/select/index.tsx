@@ -4,7 +4,7 @@ import SelectItem from './select-item'
 
 interface SelectProps {
 	placeholder: string
-	options: any[]
+	options: SelectOption[]
 	value: string
 	onChange: (item: SelectOption) => void
 	hide?: boolean
@@ -44,6 +44,7 @@ export const Select: FC<SelectProps> = ({
 						{options.map((option) => {
 							return (
 								<SelectItem
+									key={option.id}
 									option={option}
 									onClick={() => handleOnOptionClick(option)}
 								/>

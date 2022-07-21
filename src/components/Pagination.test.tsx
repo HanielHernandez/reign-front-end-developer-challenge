@@ -11,7 +11,7 @@ describe('Tests for <Pagination/>', () => {
 	}
 	let wrapper: RenderResult
 
-	const renderComponent = (props: any) => {
+	const renderComponent = (props: typeof defaultProps) => {
 		return render(<Pagination {...defaultProps} {...props} />)
 	}
 

@@ -1,20 +1,20 @@
-import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 import { frameworkOptions } from '../constants'
 import { APIParams } from '../models/api-params'
+import { Framework } from '../models/framework'
 import { Hit } from '../models/hit'
 import { NewsResponse } from '../models/news-response'
-import newsService from '../utils/news-service'
 import NewsService from '../utils/news-service'
 import Loading from './Loading'
 import { NewListItem } from './NewsListItem'
 import Pagination from './Pagination'
-import Select from './select/Index'
+import Select from './select/index'
 
 interface NewListProps {
 	mode: string
 }
 const NewsList: FC<NewListProps> = ({ mode }) => {
-	const [selectedFramework, setSelectedFramework] = useState<any | null>(
+	const [selectedFramework, setSelectedFramework] = useState<Framework | null>(
 		NewsService.queryFilter || null
 	)
 	const [filters, setFilters] = useState<APIParams>({
