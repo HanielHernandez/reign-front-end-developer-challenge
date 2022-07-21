@@ -24,6 +24,7 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 	const [loading, setLoading] = useState<boolean>(false)
 	const [favs, setFavs] = useState<Article[]>(NewsService.favs)
 	const [errorMessage, setErrorMessage] = useState('')
+
 	const fetchNews = useCallback(async () => {
 		setErrorMessage('')
 		setNews({
@@ -32,7 +33,6 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 		})
 		try {
 			setLoading(true)
-			console.log('MODE IS SET TO ', mode)
 			const response =
 				mode != 'all'
 					? NewsService.getSavedFavs(filters)
@@ -65,7 +65,14 @@ const NewsList: FC<NewListProps> = ({ mode }) => {
 
 	useEffect(() => {
 		fetchNews()
-	}, [filters, mode])
+	}, [filters])
+
+	useEffect(() => {
+		setFilters({
+			...filters,
+			page: 0
+		})
+	}, [mode])
 
 	return (
 		<div className="tabs-content">
