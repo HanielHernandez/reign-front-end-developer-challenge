@@ -13,12 +13,12 @@ describe('Tests for <Tabs/>', () => {
 		tabs: [
 			{
 				name: 'Tab A',
-				component: TestingComponent
+				onRender: () => <TestingComponent />
 			},
 
 			{
 				name: 'Tab B',
-				component: TestingComponent
+				onRender: () => <TestingComponent />
 			}
 		],
 		defaultActiveTab: 'Tab A'
